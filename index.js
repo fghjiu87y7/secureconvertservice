@@ -1,13 +1,12 @@
-function wiggleMaxLength(nums) {
-  if (nums.length === 0) return 0;
-  let up = 1;
-  let down = 1;
-  for (let i = 1; i < nums.length; i++) {
-    if (nums[i] > nums[i - 1]) {
-      up = down + 1;
-    } else if (nums[i] < nums[i - 1]) {
-      down = up + 1;
+function isValidParentheses(s) {
+  const stack = [];
+  const map = { "(": ")", "[": "]", "{": "}" };
+  for (const char of s) {
+    if (char in map) stack.push(char);
+    else {
+      const top = stack.pop();
+      if (map[top] !== char) return false;
     }
   }
-  return Math.max(up, down);
+  return stack.length === 0;
 }
