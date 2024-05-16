@@ -1,12 +1,10 @@
-function isValidParentheses(s) {
-  const stack = [];
-  const map = { "(": ")", "[": "]", "{": "}" };
-  for (const char of s) {
-    if (char in map) stack.push(char);
-    else {
-      const top = stack.pop();
-      if (map[top] !== char) return false;
-    }
+function mergeKLists(lists) {
+  if (lists.length === 0) return null;
+  while (lists.length > 1) {
+    const first = lists.shift();
+    const second = lists.shift();
+    const merged = mergeTwoLists(first, second);
+    lists.push(merged);
   }
-  return stack.length === 0;
+  return lists[0];
 }
